@@ -94,12 +94,12 @@ let stations lines =
 
     lines
     |> Seq.map(fun line ->
-        info.Stations.Stations
-        |> Array.filter(fun s -> s.ServingLines.ServingLines |> Array.exists(fun a -> a = line))
+        info.Stations
+        |> Array.filter(fun s -> s.ServingLines |> Array.exists(fun a -> a = line))
         |> Array.map(fun s -> 
             let split = s.Placemark.Point.Coordinates.Split([| ',' |])
             { name = s.Name; 
-                serving = s.ServingLines.ServingLines; 
+                serving = s.ServingLines; 
                 point = (System.Decimal.Parse(split.[0]),  System.Decimal.Parse(split.[1])) })            
     )
     |> Seq.collect id
