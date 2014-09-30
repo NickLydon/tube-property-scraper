@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{388F8DC1-8969-4DD5-8758-C4B6336FFE44}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>RightMoveStationKeyApp.Tests</RootNamespace>
+    <RootNamespace>RightMoveStationKeyApp.Integration.Tests</RootNamespace>
     <AssemblyName>RightMoveStationKeyApp.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -53,13 +53,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
-    <ProjectReference Include="..\RightMoveStationKeyApp\RightMoveStationKeyApp.fsproj">
-      <Project>{D66CFFEC-921D-442E-9961-3885E63707E7}</Project>
-      <Name>RightMoveStationKeyApp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CommonTypes\CommonTypes.fsproj">
       <Project>{D0332C1E-EB69-4403-B454-298D4C1F05D2}</Project>
       <Name>CommonTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RightMoveStationKeyApp\RightMoveStationKeyApp.fsproj">
+      <Project>{D66CFFEC-921D-442E-9961-3885E63707E7}</Project>
+      <Name>RightMoveStationKeyApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

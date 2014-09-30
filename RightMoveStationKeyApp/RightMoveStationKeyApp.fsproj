@@ -68,6 +68,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="stations-facilities.xml" />
+    <Content Include="stations-facilities.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

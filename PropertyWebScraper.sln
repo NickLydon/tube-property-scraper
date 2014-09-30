@@ -9,7 +9,7 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "RightMoveStationKeyApp", "R
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "CommonTypes", "CommonTypes\CommonTypes.fsproj", "{D0332C1E-EB69-4403-B454-298D4C1F05D2}"
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "RightMoveStationKeyApp.Tests", "RightMoveStationKeyApp.Tests\RightMoveStationKeyApp.Tests.fsproj", "{388F8DC1-8969-4DD5-8758-C4B6336FFE44}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "RightMoveStationKeyApp.Integration.Tests", "RightMoveStationKeyApp.Tests\RightMoveStationKeyApp.Integration.Tests.fsproj", "{388F8DC1-8969-4DD5-8758-C4B6336FFE44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
