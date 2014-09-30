@@ -8,7 +8,7 @@ open System.IO
 open XYZ.RightMoveStationKeyApp
 
 [<Test>]
-let ``should give empty key collection when given no stations``() = 
+let ``should give rightmove keys for all stations on circle line``() = 
     let filename = "output.json"
     run filename [| "Circle" |]
     let contents = File.ReadAllText filename
