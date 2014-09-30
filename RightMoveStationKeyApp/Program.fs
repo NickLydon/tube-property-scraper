@@ -10,6 +10,6 @@ open XYZ.RightMoveStationKeyApp
 
 [<EntryPoint>]
 let main argv = 
-    run argv.[0] argv.[0..]
+    run argv.[0] argv.[1..]
 
     0 // return an integer exit code
