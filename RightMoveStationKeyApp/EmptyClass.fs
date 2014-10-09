@@ -11,7 +11,7 @@ type TflProvider = XmlProvider<"stations-facilities.xml", false, true>
 type JsonProv = JsonProvider<"http://www.rightmove.co.uk/typeAhead/uknostreet/AL/DE/RN/EY/">
 
 module RightMoveStationKeyApp =
-    let getStationKeys stationsOfInterest =
+    let getStationKeys urlHandler stationsOfInterest =
         
         stationsOfInterest
         |> Seq.map(fun station ->             
@@ -41,19 +41,27 @@ module RightMoveStationKeyApp =
                 lookAheadUrls
                 |> Seq.map(fun url ->
                     try
-                        Some(Http.Request url)
+                        Some(urlHandler url)
                     with
                     | _ -> None
                 )
-                |> Seq.takeWhile Option.isSome
-                |> Seq.map(fun r -> 
-                    let body = r.Value.Body
-
-                    match body with
-                    | FSharp.Data.HttpResponseBody.Text a -> (station, a)
-                    | _ -> failwith "shouldn't receive binary" 
-                )
-            if Seq.length responses = 0 then None else Some(Seq.last responses |> stationkey)
+                |> Seq.filter Option.isSome
+                |> Seq.cache
+            if responses |> Seq.isEmpty  
+            then None 
+            else 
+                Some(
+                    responses
+                    |> Seq.map(fun r -> 
+                        let body = r.Value.Body
+                
+                        match body with
+                        | FSharp.Data.HttpResponseBody.Text a -> (station, a)
+                        | _ -> failwith "shouldn't receive binary" 
+                    )
+                    |> Seq.head
+                    |> stationkey)
+            
         )
         |> Seq.filter Option.isSome
         |> Seq.map Option.get
@@ -62,7 +70,7 @@ module RightMoveStationKeyApp =
         File.WriteAllText(
             fileOutput,    
             Newtonsoft.Json.JsonConvert.SerializeObject(
-                getStationKeys stations
+                getStationKeys Http.Request stations
                 |> Seq.filter Option.isSome
                 |> Seq.map Option.get
             )
